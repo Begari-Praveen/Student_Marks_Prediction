@@ -312,11 +312,7 @@ export const WhatIf = () => {
             <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
               <div>
                 <h3 className="font-display font-bold text-white text-base">
-<<<<<<< HEAD
                   Current Performance
-=======
-                  1. Current Performance
->>>>>>> 860f6d5a02488f43a225fb9b05cdbb7799b5de45
                 </h3>
                 <p className="text-xs text-slate-500">Establish the student's baseline marks.</p>
               </div>
@@ -471,11 +467,7 @@ export const WhatIf = () => {
             <div className="glass-panel rounded-2xl p-6 border border-slate-800 bg-slate-950/40 space-y-6 animate-fade-in">
               <div className="border-b border-slate-800 pb-3">
                 <h3 className="font-display font-bold text-white text-base">
-<<<<<<< HEAD
                   What-If Scenario Settings
-=======
-                  2. What-If Scenario Settings
->>>>>>> 860f6d5a02488f43a225fb9b05cdbb7799b5de45
                 </h3>
                 <p className="text-xs text-slate-500">Drag sliders to adjust student factors and test different scenarios.</p>
               </div>

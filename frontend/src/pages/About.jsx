@@ -1,309 +1,134 @@
 import React from 'react';
-<<<<<<< HEAD
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
-  BrainCircuit, 
-  Sparkles, 
-  Target, 
-  BarChart3, 
-  Sliders, 
-  FileText, 
-  ArrowRight, 
-  Users, 
-  Award,
-  Lightbulb
+  Target, GraduationCap, ArrowRight, CheckCircle2, Sparkles
 } from 'lucide-react';
 
 export const About = () => {
-  const stats = [
-    { label: 'Prediction Accuracy', value: '98.4%', desc: 'Calibrated Gradient Boosting' },
-    { label: 'Core Indicators', value: '6 Key Features', desc: 'Multi-dimensional analysis' },
-    { label: 'Explainability', value: '100% SHAP', desc: 'Transparent factor attribution' },
-    { label: 'API Response Time', value: '< 100ms', desc: 'Powered by FastAPI backend' },
-  ];
+  const navigate = useNavigate();
 
-  const pillars = [
-    {
-      icon: Target,
-      color: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
-      title: 'AI Grade Forecasting',
-      desc: 'Predicts final exam scores accurately using pre-trained machine learning algorithms (Gradient Boosting & Random Forest) trained on student engagement data.'
-    },
-    {
-      icon: BarChart3,
-      color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-      title: 'Explainable AI (SHAP)',
-      desc: 'Eliminates black-box predictions by calculating exact SHAP feature attributions, showing positive and negative influences on student marks.'
-    },
-    {
-      icon: Sliders,
-      color: 'text-violet-400 bg-violet-500/10 border-violet-500/20',
-      title: 'What-If Simulation Engine',
-      desc: 'Allows students to interactively adjust study hours, attendance, and assignment scores to simulate potential grade improvements in real-time.'
-    },
-    {
-      icon: Lightbulb,
-      color: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
-      title: 'Personalized Interventions',
-      desc: 'Generates rule-based, tailored academic recommendations and mentoring advice based on identified performance risk levels (Low, Moderate, High).'
-    },
-    {
-      icon: Users,
-      color: 'text-rose-400 bg-rose-500/10 border-rose-500/20',
-      title: 'Faculty Admin Dashboard',
-      desc: 'Provides educators with cohort-level statistics, risk distribution charts, and student performance tracking to enable early academic counseling.'
-    },
-    {
-      icon: FileText,
-      color: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20',
-      title: 'Automated PDF Reports',
-      desc: 'Produces clean, professional performance summaries and intervention reports ready for download, archiving, or parent-teacher discussions.'
-    }
+  const stats = [
+    { label: 'Academic Features Evaluated', value: '6 Metrics', desc: 'Attendance, Study Hours, CGPA & Coursework' },
+    { label: 'Machine Learning Engine', value: 'Gradient Boosting', desc: 'Optimized regression for high accuracy' },
+    { label: 'Explainability Standard', value: 'SHAP Framework', desc: 'Transparent feature attribution for every score' },
+    { label: 'Response Latency', value: '< 100ms', desc: 'Real-time REST API inference via FastAPI' },
   ];
 
   return (
-    <div className="space-y-16 py-4 max-w-5xl mx-auto">
-      {/* Hero Section */}
-      <section className="text-center space-y-6 pt-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wide">
-          <Sparkles className="h-3.5 w-3.5" />
-          <span>Next-Generation Educational Intelligence</span>
-        </div>
-        
-        <h1 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight max-w-3xl mx-auto">
-          Empowering Student Success Through <span className="bg-gradient-to-r from-blue-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent">Explainable AI</span>
-        </h1>
-        
-        <p className="text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          EduPredict AI bridges the gap between academic analytics and early interventions. By combining predictive machine learning with transparent SHAP explanations, we turn raw student data into actionable guidance.
-        </p>
+    <div className="space-y-16 py-6 max-w-6xl mx-auto">
+      
+      {/* HERO SECTION */}
+      <section className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/50 p-8 md:p-12 lg:p-16 text-center space-y-6">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-          <Link
-            to="/predict"
-            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 text-sm transition-all shadow-lg shadow-blue-600/20 hover:shadow-blue-500/30 active:scale-95"
-          >
-            <span>Launch Marks Predictor</span>
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            to="/what-if"
-            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 font-semibold px-6 py-3 text-sm transition-all active:scale-95"
-          >
-            <Sliders className="h-4 w-4 text-violet-400" />
-            <span>Try What-If Simulator</span>
-          </Link>
+        <div className="relative z-10 max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-semibold text-blue-400">
+            <Sparkles className="h-4 w-4" />
+            Next-Generation Educational Intelligence Platform
+          </div>
+
+          <h1 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
+            Empowering Academic Excellence via{' '}
+            <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-violet-400 bg-clip-text text-transparent">
+              Explainable AI
+            </span>
+          </h1>
+
+          <p className="text-base text-slate-300 sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            EduPredict AI bridges the gap between academic diagnostics and proactive student support. By combining robust machine learning predictions with transparent SHAP explanations, we empower educators and students to turn early insights into measurable success.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4 pt-4">
+            <button
+              onClick={() => navigate('/predict')}
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-500/25 hover:from-blue-500 hover:to-violet-500 active:scale-95 transition-all"
+            >
+              Try Marks Predictor
+              <ArrowRight className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => navigate('/what-if')}
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/80 px-6 py-3.5 text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition-all"
+            >
+              Open What-If Simulator
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* Stats Counter Banner */}
-      <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((stat, idx) => (
-          <div key={idx} className="glass-panel rounded-2xl p-5 text-center space-y-1 relative overflow-hidden border border-slate-800/80">
-            <div className="text-2xl sm:text-3xl font-extrabold text-white font-display bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              {stat.value}
+      {/* SYSTEM IMPACT & STATS */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {stats.map((item, idx) => (
+          <div key={idx} className="glass-panel rounded-2xl p-6 space-y-2 border border-slate-800/80 hover:border-slate-700 transition-colors">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-400 block">
+              {item.label}
+            </span>
+            <div className="font-display text-2xl font-extrabold text-white">
+              {item.value}
             </div>
-            <div className="text-xs font-bold text-blue-400">{stat.label}</div>
-            <div className="text-[11px] text-slate-400">{stat.desc}</div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              {item.desc}
+            </p>
           </div>
         ))}
       </section>
 
-      {/* Mission & Vision */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="glass-panel rounded-2xl p-7 space-y-4 border border-slate-800/80">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
+      {/* MISSION & VISION */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="glass-panel rounded-2xl p-8 space-y-4 border border-slate-800 relative overflow-hidden">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
             <Target className="h-6 w-6" />
           </div>
-          <h3 className="font-display text-xl font-bold text-white">Our Mission</h3>
+          <h2 className="font-display text-2xl font-bold text-white tracking-tight">Our Mission</h2>
           <p className="text-sm text-slate-300 leading-relaxed">
-            To move educational systems from reactive grading to proactive mentoring. Traditional exams measure performance when it is too late to make changes. EduPredict AI forecasts outcome risks mid-semester, allowing students and educators to intervene when it matters most.
+            Traditional educational evaluations identify student struggle when it is often too late—after final examinations are completed. Our mission is to democratize early academic risk detection by giving students and mentors access to real-time, interpretable predictive models that guide timely course corrections.
           </p>
+          <ul className="space-y-2.5 pt-2 text-xs text-slate-300">
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+              <span>Early detection of academic risk factors mid-semester</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+              <span>Transparent, trustworthy AI outputs backed by mathematical explainability</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+              <span>Actionable, personalized improvement roadmaps for every student</span>
+            </li>
+          </ul>
         </div>
 
-        <div className="glass-panel rounded-2xl p-7 space-y-4 border border-slate-800/80">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20">
-            <Award className="h-6 w-6" />
+        <div className="glass-panel rounded-2xl p-8 space-y-4 border border-slate-800 relative overflow-hidden">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-400 border border-violet-500/20">
+            <GraduationCap className="h-6 w-6" />
           </div>
-          <h3 className="font-display text-xl font-bold text-white">Transparent AI Standard</h3>
+          <h2 className="font-display text-2xl font-bold text-white tracking-tight">Pedagogical Vision</h2>
           <p className="text-sm text-slate-300 leading-relaxed">
-            We believe machine learning in education must be interpretable, not a mystery. By providing SHAP feature attributions, students understand exactly why a specific score is predicted and how improving study hours or attendance directly boosts their final grade.
+            We envision an educational landscape where data analytics enhance human mentorship rather than replace it. By delivering precise, transparent data insights, EduPredict AI enables faculty advisors to tailor tutoring programs, optimize study strategies, and maximize institutional pass rates.
           </p>
+          <ul className="space-y-2.5 pt-2 text-xs text-slate-300">
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-blue-400 shrink-0" />
+              <span>Data-informed decision making for academic counseling</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-blue-400 shrink-0" />
+              <span>Interactive goal-oriented simulation for self-directed study</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-blue-400 shrink-0" />
+              <span>Scalable architecture built for modern educational institutions</span>
+            </li>
+          </ul>
         </div>
       </section>
 
-      {/* Core Platform Capabilities */}
-      <section className="space-y-8">
-        <div className="text-center space-y-2">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
-            Core System Capabilities
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
-            Comprehensive tools built to analyze, simulate, and enhance academic performance.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {pillars.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div key={idx} className="glass-panel rounded-2xl p-6 space-y-3 hover:border-slate-700 transition-all group">
-                <div className={`flex h-11 w-11 items-center justify-center rounded-xl border ${item.color} group-hover:scale-105 transition-transform`}>
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="font-display text-base font-bold text-white">{item.title}</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
-              </div>
-            );
-          })}
-=======
-import { 
-  ShieldAlert, BarChart3, GraduationCap, ArrowRight, BrainCircuit, Lightbulb, FileText
-} from 'lucide-react';
-
-export const About = () => {
-  const workflow = [
-    { title: 'Academic Input', desc: 'Capture 6 performance indicators' },
-    { title: 'FastAPI REST Endpoint', desc: 'Transport payload securely' },
-    { title: 'Gradient Boosting Model', desc: 'Predict marks & assess risks' },
-    { title: 'SHAP Contributions', desc: 'Calculate feature impacts' },
-    { title: 'Intervention Engine', desc: 'Generate actionable guidelines' }
-  ];
-
-  return (
-    <div className="space-y-10 py-6 max-w-4xl mx-auto">
-      {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600/10 text-blue-500 border border-blue-500/20 mb-2">
-          <BrainCircuit className="h-6 w-6" />
-        </div>
-        <h1 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-          EduPredict AI Framework
-        </h1>
-        <p className="text-sm text-slate-400 max-w-lg mx-auto leading-relaxed">
-          An explainable AI intelligence dashboard designed for predicting exam performance and driving early mentoring interventions.
-        </p>
-      </div>
-
-      {/* Presentation: 5 Keys (Problem, Input, Prediction, Explanation, Action) */}
-      <section className="space-y-6">
-        <h2 className="font-display text-xl font-bold text-white tracking-tight border-b border-slate-800 pb-3">
-          Core Architectural Pillars
-        </h2>
-
-        <div className="space-y-6">
-          {/* Pillar 1: Problem */}
-          <div className="glass-panel rounded-2xl p-6 flex gap-4 items-start">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20">
-              <ShieldAlert className="h-5 w-5" />
-            </div>
-            <div className="space-y-1.5">
-              <h3 className="font-display text-base font-bold text-white">1. The Problem</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Student academic failure or drop-off is frequently identified too late—often only after final semester examinations are graded. Faculty members lack automated, real-time analytics to inspect student progress mid-semester, making early course corrections and proactive tutoring difficult to coordinate.
-              </p>
-            </div>
-          </div>
-
-          {/* Pillar 2: Input */}
-          <div className="glass-panel rounded-2xl p-6 flex gap-4 items-start">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
-              <FileText className="h-5 w-5" />
-            </div>
-            <div className="space-y-1.5">
-              <h3 className="font-display text-base font-bold text-white">2. The Inputs</h3>
-              <p className="text-xs text-slate-400 leading-relaxed mb-3">
-                EduPredict AI takes six academic and engagement factors that represent a student's standing:
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {[
-                  { name: 'Attendance %', range: '0–100 %' },
-                  { name: 'Study Hours/Wk', range: '>= 0 hours' },
-                  { name: 'Assignment Score', range: '0–100 %' },
-                  { name: 'Internal Marks', range: '0–100 %' },
-                  { name: 'Previous CGPA', range: '0–10.0 scale' },
-                  { name: 'Academic Activity', range: '0–100 index' },
-                ].map((item, idx) => (
-                  <div key={idx} className="bg-slate-900/50 border border-slate-800/40 rounded-lg p-2.5">
-                    <span className="text-[11px] font-bold text-slate-300 block">{item.name}</span>
-                    <span className="text-[10px] text-slate-500 block mt-0.5">Range: {item.range}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Pillar 3: Prediction */}
-          <div className="glass-panel rounded-2xl p-6 flex gap-4 items-start">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20">
-              <GraduationCap className="h-5 w-5" />
-            </div>
-            <div className="space-y-1.5">
-              <h3 className="font-display text-base font-bold text-white">3. The Prediction</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                The frontend communicates directly with our FastAPI endpoint which feeds features into a pre-trained <span className="font-semibold text-slate-300">Gradient Boosting Regressor</span>. The model projects the student's expected final exam marks (formatted to 2 decimal places) and flags their risk tier (Low, Moderate, High) instantly.
-              </p>
-            </div>
-          </div>
-
-          {/* Pillar 4: Explanation */}
-          <div className="glass-panel rounded-2xl p-6 flex gap-4 items-start">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <BarChart3 className="h-5 w-5" />
-            </div>
-            <div className="space-y-1.5">
-              <h3 className="font-display text-base font-bold text-white">4. The Explanation (Explainable AI)</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Instead of operating as a "black box," the system leverages <span className="font-semibold text-slate-300">SHAP (SHapley Additive exPlanations)</span> contributions computed by the backend. It plots exactly which features drove the prediction higher (positive impact) or pulled it lower (negative impact) to validate model decisions.
-              </p>
-            </div>
-          </div>
-
-          {/* Pillar 5: Action */}
-          <div className="glass-panel rounded-2xl p-6 flex gap-4 items-start">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-              <Lightbulb className="h-5 w-5" />
-            </div>
-            <div className="space-y-1.5">
-              <h3 className="font-display text-base font-bold text-white">5. Action (Targeted Interventions)</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Predictions trigger personalized, rule-based recommendations returned by the AI Intervention Engine. Whether a student needs to boost study hours, attend office hours, or join peer coaching groups, the system highlights clear corrective steps to improve learning outcomes.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* System Flow Diagram */}
-      <section className="glass-panel rounded-2xl p-6">
-        <h2 className="font-display text-base font-bold text-white mb-4">Pipeline Workflow Schema</h2>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 items-center">
-          {workflow.map((step, idx) => (
-            <React.Fragment key={idx}>
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4.5 text-center space-y-1">
-                <span className="text-[10px] text-blue-500 font-bold uppercase tracking-widest">
-                  Step {idx + 1}
-                </span>
-                <h4 className="text-xs font-bold text-white">{step.title}</h4>
-                <p className="text-[10px] text-slate-400 leading-normal">{step.desc}</p>
-              </div>
-              {idx < workflow.length - 1 && (
-                <div className="hidden md:flex justify-center text-slate-700">
-                  <ArrowRight className="h-5 w-5" />
-                </div>
-              )}
-            </React.Fragment>
-          ))}
->>>>>>> 860f6d5a02488f43a225fb9b05cdbb7799b5de45
-        </div>
-      </section>
     </div>
   );
 };
-<<<<<<< HEAD
 
 export default About;
 
-=======
-export default About;
->>>>>>> 860f6d5a02488f43a225fb9b05cdbb7799b5de45
+
