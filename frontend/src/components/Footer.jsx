@@ -12,11 +12,7 @@ export const Footer = () => {
             <span className="text-sm">| Academic Performance Analytics</span>
           </div>
           <p className="text-center text-xs leading-5 text-slate-500 md:text-left">
-<<<<<<< HEAD
             &copy; {new Date().getFullYear()} EduPredict AI
-=======
-            &copy; {new Date().getFullYear()} EduPredict AI. For hackathon evaluation & early intervention planning.
->>>>>>> 860f6d5a02488f43a225fb9b05cdbb7799b5de45
           </p>
           <div className="flex space-x-6 text-sm text-slate-500">
             <span className="hover:text-slate-300 cursor-pointer">Privacy Policy</span>
