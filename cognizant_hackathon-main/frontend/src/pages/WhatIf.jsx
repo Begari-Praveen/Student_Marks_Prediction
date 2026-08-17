@@ -2,46 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip as ReChartsTooltip, Cell } from 'recharts';
 import { predictionApi } from '../services/predictionApi';
 import { validateInputs } from '../utils/validation';
-import { lastPredictionStore } from '../utils/predictionState';
 import { 
-  Sliders, RefreshCw, Save, Trash2, ArrowUpRight, ArrowDownRight,
-  Info, ArrowRight, BookOpen, AlertTriangle, Download, Lightbulb
+  Sliders, HelpCircle, RefreshCw, BarChart3, Save, Trash2, 
+  ArrowUpRight, ArrowDownRight, Info, Play, ArrowRight, BookOpen, AlertTriangle, Download, Lightbulb
 } from 'lucide-react';
 import { generatePDFReport } from '../utils/pdfGenerator';
 
-const DEFAULT_BASELINE = {
-  attendance_pct: '70',
-  study_hours_week: '2',
-  assignment_score: '65',
-  internal_marks: '60',
-  prev_sem_cgpa: '6.2',
-  activity_score: '50'
-};
-
-const toSliderData = (data) => ({
-  attendance_pct: parseFloat(data.attendance_pct),
-  study_hours_week: parseFloat(data.study_hours_week),
-  assignment_score: parseFloat(data.assignment_score),
-  internal_marks: parseFloat(data.internal_marks),
-  prev_sem_cgpa: parseFloat(data.prev_sem_cgpa),
-  activity_score: parseFloat(data.activity_score)
-});
-
-const toFormData = (data) => ({
-  attendance_pct: String(data.attendance_pct),
-  study_hours_week: String(data.study_hours_week),
-  assignment_score: String(data.assignment_score),
-  internal_marks: String(data.internal_marks),
-  prev_sem_cgpa: String(data.prev_sem_cgpa),
-  activity_score: String(data.activity_score)
-});
-
 export const WhatIf = () => {
   // Current Student Baseline Performance State
-  const [currentData, setCurrentData] = useState(DEFAULT_BASELINE);
+  const [currentData, setCurrentData] = useState({
+    attendance_pct: '70',
+    study_hours_week: '2',
+    assignment_score: '65',
+    internal_marks: '60',
+    prev_sem_cgpa: '6.2',
+    activity_score: '50'
+  });
 
   // What-If Simulation Performance State
-  const [whatIfData, setWhatIfData] = useState(toSliderData(DEFAULT_BASELINE));
+  const [whatIfData, setWhatIfData] = useState({
+    attendance_pct: 70,
+    study_hours_week: 2,
+    assignment_score: 65,
+    internal_marks: 60,
+    prev_sem_cgpa: 6.2,
+    activity_score: 50
+  });
 
   // App loading, prediction, error state
   const [loading, setLoading] = useState(false);
@@ -58,28 +44,28 @@ export const WhatIf = () => {
 
   // Pre-load a demo profile into baseline when page mounts
   const handleLoadDemo = () => {
-    setCurrentData(DEFAULT_BASELINE);
-    setWhatIfData(toSliderData(DEFAULT_BASELINE));
+    const demo = {
+      attendance_pct: '70',
+      study_hours_week: '2',
+      assignment_score: '65',
+      internal_marks: '60',
+      prev_sem_cgpa: '6.2',
+      activity_score: '50'
+    };
+    setCurrentData(demo);
+    // Reset simulation
+    setWhatIfData({
+      attendance_pct: 70,
+      study_hours_week: 2,
+      assignment_score: 65,
+      internal_marks: 60,
+      prev_sem_cgpa: 6.2,
+      activity_score: 50
+    });
     setBaselinePrediction(null);
     setSimulationResult(null);
     setErrors({});
     setErrorMsg('');
-  };
-
-  const loadLastActualPrediction = () => {
-    const stored = lastPredictionStore.get();
-    if (!stored?.inputs || stored?.prediction?.predicted_final_marks === undefined) {
-      return false;
-    }
-
-    const baseline = toFormData(stored.inputs);
-    setCurrentData(baseline);
-    setWhatIfData(toSliderData(baseline));
-    setBaselinePrediction(parseFloat(stored.prediction.predicted_final_marks));
-    setSimulationResult(null);
-    setErrors({});
-    setErrorMsg('');
-    return true;
   };
 
   const handleInputChange = (e) => {
@@ -88,8 +74,6 @@ export const WhatIf = () => {
       ...prev,
       [name]: value
     }));
-    setBaselinePrediction(null);
-    setSimulationResult(null);
   };
 
   // Validate and submit baseline values to API
@@ -112,12 +96,18 @@ export const WhatIf = () => {
     setBaselineLoading(false);
     
     if (result.success) {
-      const marks = parseFloat(result.data.predicted_final_marks);
+      const marks = result.data.predicted_final_marks;
       setBaselinePrediction(marks);
       
       // Initialize what-if data state to match current inputs
-      setWhatIfData(toSliderData(currentData));
-      lastPredictionStore.set(currentData, result.data);
+      setWhatIfData({
+        attendance_pct: parseFloat(currentData.attendance_pct),
+        study_hours_week: parseFloat(currentData.study_hours_week),
+        assignment_score: parseFloat(currentData.assignment_score),
+        internal_marks: parseFloat(currentData.internal_marks),
+        prev_sem_cgpa: parseFloat(currentData.prev_sem_cgpa),
+        activity_score: parseFloat(currentData.activity_score)
+      });
     } else {
       setErrorMsg(result.error?.message || 'Failed to fetch baseline prediction.');
     }
@@ -178,7 +168,14 @@ export const WhatIf = () => {
 
   // Restore sliders to original values
   const handleReset = () => {
-    setWhatIfData(toSliderData(currentData));
+    setWhatIfData({
+      attendance_pct: parseFloat(currentData.attendance_pct),
+      study_hours_week: parseFloat(currentData.study_hours_week),
+      assignment_score: parseFloat(currentData.assignment_score),
+      internal_marks: parseFloat(currentData.internal_marks),
+      prev_sem_cgpa: parseFloat(currentData.prev_sem_cgpa),
+      activity_score: parseFloat(currentData.activity_score)
+    });
     setSimulationResult(null);
   };
 
@@ -213,6 +210,7 @@ export const WhatIf = () => {
   // Generate and download a PDF report containing baseline & what-if results
   const handleDownloadReport = () => {
     if (!simulationResult) return;
+    const studentName = prompt("Enter Student Name for the report:", "Rahul") || "Student";
     
     // We construct a mock prediction response object so pdfGenerator is completely unified
     const mockPrediction = {
@@ -224,7 +222,7 @@ export const WhatIf = () => {
     };
 
     generatePDFReport({
-      studentName: 'Student',
+      studentName,
       inputs: {
         attendance_pct: currentData.attendance_pct,
         study_hours_week: currentData.study_hours_week,
@@ -242,19 +240,9 @@ export const WhatIf = () => {
     });
   };
 
-  // Pre-load the latest real prediction if available; otherwise show demo values.
+  // Pre-load default values on load
   useEffect(() => {
-    if (!loadLastActualPrediction()) {
-      handleLoadDemo();
-    }
-
-    const syncLastPrediction = () => loadLastActualPrediction();
-    window.addEventListener('edupredict-last-prediction-change', syncLastPrediction);
-    window.addEventListener('storage', syncLastPrediction);
-    return () => {
-      window.removeEventListener('edupredict-last-prediction-change', syncLastPrediction);
-      window.removeEventListener('storage', syncLastPrediction);
-    };
+    handleLoadDemo();
   }, []);
 
   // Format chart data for Recharts comparison
@@ -312,11 +300,7 @@ export const WhatIf = () => {
             <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
               <div>
                 <h3 className="font-display font-bold text-white text-base">
-<<<<<<< HEAD
-                  Current Performance
-=======
                   1. Current Performance
->>>>>>> 860f6d5a02488f43a225fb9b05cdbb7799b5de45
                 </h3>
                 <p className="text-xs text-slate-500">Establish the student's baseline marks.</p>
               </div>
@@ -471,11 +455,7 @@ export const WhatIf = () => {
             <div className="glass-panel rounded-2xl p-6 border border-slate-800 bg-slate-950/40 space-y-6 animate-fade-in">
               <div className="border-b border-slate-800 pb-3">
                 <h3 className="font-display font-bold text-white text-base">
-<<<<<<< HEAD
-                  What-If Scenario Settings
-=======
                   2. What-If Scenario Settings
->>>>>>> 860f6d5a02488f43a225fb9b05cdbb7799b5de45
                 </h3>
                 <p className="text-xs text-slate-500">Drag sliders to adjust student factors and test different scenarios.</p>
               </div>
