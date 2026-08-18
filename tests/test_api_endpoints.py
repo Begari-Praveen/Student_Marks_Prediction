@@ -302,3 +302,18 @@ def test_what_if_and_history(db_session):
     }
     response_invalid = client.post("/what-if", headers={"Authorization": f"Bearer {token}"}, json=invalid_sim_data)
     assert response_invalid.status_code == 422
+
+
+def test_cors_preflight():
+    response = client.options(
+        "/auth/login",
+        headers={
+            "Origin": "https://student-mark-predictor-mu.vercel.app",
+            "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": "content-type",
+        },
+    )
+    assert response.status_code == 200
+    assert response.headers["access-control-allow-origin"] == "https://student-mark-predictor-mu.vercel.app"
+    assert response.headers["access-control-allow-credentials"] == "true"
+
