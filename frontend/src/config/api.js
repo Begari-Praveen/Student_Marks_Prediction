@@ -1,7 +1,8 @@
 // API Configuration
 // Loaded from environment variables for easy deployment
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+export const API_BASE_URL = rawBaseUrl.replace(/\/+$/, '');
 
 export const API_ENDPOINTS = {
   register: `${API_BASE_URL}/auth/register`,
