@@ -11,7 +11,6 @@ from backend.app.models import Prediction, StudentProfile, User, WhatIfPredictio
 from backend.app.routers import admin, auth, predictions, students, what_if
 from backend.app.services.prediction_service import prediction_service
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # For hackathon/dev convenience. In production, run Alembic migrations instead.

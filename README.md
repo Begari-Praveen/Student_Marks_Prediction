@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Student Marks Prediction
 
 This project predicts `final_exam_marks` from student performance features.
@@ -255,3 +256,6 @@ Authorization: `Bearer ${token}`
 ```bash
 pytest -q tests/test_auth_backend.py
 ```
+=======
+# Student_Marks_Prediction
+>>>>>>> 439eb0400fde0ee0e6785d4a2875969f16e27cfb
